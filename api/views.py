@@ -34,13 +34,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()  # Updated to reference Product
+    queryset = Product.objects.all()  
     serializer_class = ProductSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     @action(detail=True, methods=['post'])
-    def rate_product(self, request, pk=None):  # Updated method name and reference
+    def rate_product(self, request, pk=None): 
         if 'stars' in request.data:
             product = Product.objects.get(id=pk)
             stars = request.data['stars']
@@ -48,7 +48,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
             try:
                 # Update rating if it exists
-                rating = Rating.objects.get(user=user.id, product=product.id)  # Updated to reference Product
+                rating = Rating.objects.get(user=user.id, product=product.id)  
                 rating.stars = stars
                 rating.save()
                 serializer = RatingSerializer(rating)
@@ -60,7 +60,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
             except Rating.DoesNotExist:
                 # Create a new rating if it doesn't exist
-                rating = Rating.objects.create(stars=stars, product=product, user=user)  # Updated to reference Product
+                rating = Rating.objects.create(stars=stars, product=product, user=user)  
                 serializer = RatingSerializer(rating)
                 json = {
                     'message': 'Product Rating Created',

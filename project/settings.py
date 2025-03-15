@@ -4,17 +4,16 @@ import os
 import dj_database_url
 from dj_database_url import parse as dburl
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', '.localhost'] #'healthwellnessrater.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -27,10 +26,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    #'healthwellnessrater',
-    'api',  # Your app for health and wellness products
+    'api', 
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -68,24 +65,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-# Database
-#default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-#DATABASES = {
-#   'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-#}
 DATABASE_URL = config('DATABASE_URL', default=None)
 
-#DATABASES = {
- #   'default': dj_database_url.config(default=DATABASE_URL)
-#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'healthyratingdb',       # Replace with your database name
-        'USER': 'healthyratinguser',     # Replace with your username
-        'PASSWORD': 'healthy123456789',       # Replace with your password
-        'HOST': 'localhost',            # Usually 'localhost' or '127.0.0.1'
-        'PORT': '5432',                # Default PostgreSQL port
+        'NAME': 'healthyratingdb',       
+        'USER': 'healthyratinguser',     
+        'PASSWORD': 'healthy123456789',       
+        'HOST': 'localhost',      
+        'PORT': '5432',               
     }
 }
 

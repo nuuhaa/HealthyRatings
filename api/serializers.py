@@ -15,9 +15,9 @@ class UserSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'title', 'description', 'no_of_ratings', 'avg_rating')  # Updated to reference Product
+        fields = ('id', 'title', 'description', 'no_of_ratings', 'avg_rating')  
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ('id', 'stars', 'user', 'product')  # Updated to reference Product
+        fields = ('id', 'stars', 'user', 'product')  

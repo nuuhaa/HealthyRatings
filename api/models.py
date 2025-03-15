@@ -13,7 +13,7 @@ class Product(models.Model):
     
     def avg_rating(self):
         sum_ratings = 0
-        ratings = Rating.objects.filter(product=self)  # number of ratings for the product
+        ratings = Rating.objects.filter(product=self)  
 
         for rating in ratings:
             sum_ratings += rating.stars
@@ -28,13 +28,12 @@ class Product(models.Model):
 
 
 class Rating(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # Updated to reference Product
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     class Meta:
-        unique_together = (('user', 'product'),)  # Updated to reference Product
-        #index_together = (('user', 'product'),)
+        unique_together = (('user', 'product'),)  
         indexes = [
             models.Index(fields=['user', 'product']),
         ]

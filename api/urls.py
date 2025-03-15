@@ -5,7 +5,7 @@ from .views import ProductViewSet, RatingViewSet, UserViewSet
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
-router.register('products', ProductViewSet)  # Updated to reference ProductViewSet
+router.register('products', ProductViewSet)  
 router.register('ratings', RatingViewSet)
 
 urlpatterns = [
